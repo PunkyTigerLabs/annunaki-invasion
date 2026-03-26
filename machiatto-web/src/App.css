@@ -1,0 +1,113 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Simulación de Trajan Pro (no disponible en Google Fonts) */
+@font-face {
+  font-family: 'Trajan Pro';
+  src: local('Times New Roman');
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f0d078;
+}
+
+/* Selección de texto */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #fff;
+}
+
+/* Animaciones globales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Estilos para enlaces globales */
+a {
+  color: #d4af37;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #f0d078;
+  text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* Estilos para imágenes globales */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utilidades */
+.text-gold {
+  color: #d4af37;
+}
+
+.bg-dark {
+  background-color: #111;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Media queries globales */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
