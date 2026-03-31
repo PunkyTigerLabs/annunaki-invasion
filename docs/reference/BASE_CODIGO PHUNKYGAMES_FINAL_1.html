@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phunky Games - Unlocking the Next Frontier in Gaming</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ------------------- */
+        /* ---   Variables & Global Styles   --- */
+        /* ------------------- */
+        :root {
+            --color-black-cosmic: #0D0A1F;
+            --color-cyan-holographic: #00F0FF;
+            --color-magenta-vibrant: #FF00FF;
+            --color-gold-anunnaki: #FFD700;
+            --color-white: #E0E0E0;
+            --color-grey: #A0A0A0;
+            --navbar-height: 70px;
+            --font-title: 'Orbitron', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--navbar-height);
+        }
+
+        body {
+            background-color: var(--color-black-cosmic);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        /* ------------------- */
+        /* ---   Animated Background   --- */
+        /* ------------------- */
+        #background-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: transparent;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* ------------------- */
+        /* ---   Navbar   --- */
+        /* ------------------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--navbar-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background-color: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: background-color var(--transition-speed);
+        }
+
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: auto;
+        }
+
+        .navbar__logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px var(--color-cyan-holographic));
+        }
+
+        .navbar__logo span {
+            display: none;
+        }
+
+        .navbar__menu {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .navbar__menu a {
+            color: var(--color-grey);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color var(--transition-speed), text-shadow var(--transition-speed);
+        }
+        
+        .navbar__menu a:hover, .navbar__menu a.active {
+            color: var(--color-cyan-holographic);
+            text-shadow: 0 0 8px var(--color-cyan-holographic);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger__bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--color-white);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* ------------------- */
+        /* ---   General Section Styling   --- */
+        /* ------------------- */
+        .section {
+            padding: 120px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .section:last-of-type { border-bottom: none; }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            text-shadow: 0 0 10px var(--color-cyan-holographic), 0 0 20px var(--color-magenta-vibrant);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-grey);
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+            line-height: 1.8;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            font-family: var(--font-title);
+            font-size: 1rem;
+            padding: 15px 35px;
+            text-decoration: none;
+            color: var(--color-white);
+            background: transparent;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, var(--color-cyan-holographic), var(--color-magenta-vibrant)) 1;
+            cursor: pointer;
+            position: relative;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: 0 0 15px 5px var(--color-cyan-holographic), 0 0 25px 10px var(--color-magenta-vibrant);
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--color-black-cosmic);
+            background: linear-gradient(45deg, var(--color-cyan-holographic), var(--color-magenta-vibrant));
+            transform: scale(1.05);
+        }
+        
+        .cta-button:hover::before { opacity: 0.5; }
+        
+        /* Fade-in Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ------------------- */
+        /* ---   Hero Section   --- */
+        /* ------------------- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: var(--navbar-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero h1 {
+            font-family: var(--font-title);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--color-cyan-holographic), var(--color-white), var(--color-magenta-vibrant));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: text-glow 5s infinite linear;
+            margin-bottom: 20px;
+        }
+
+        #hero .subline {
+            font-family: var(--font-body);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-gold-anunnaki);
+            margin: 20px 0 30px 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px var(--color-gold-anunnaki);
+        }
+
+        #hero .hero-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--color-grey);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .floating-cards {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-card {
+            position: absolute;
+            width: 60px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--color-cyan-holographic), var(--color-magenta-vibrant));
+            border-radius: 8px;
+            opacity: 0.3;
+            animation: float-card 8s infinite ease-in-out;
+        }
+
+        .floating-card:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-card:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+        .floating-card:nth-child(3) { top: 30%; left: 80%; animation-delay: 4s; }
+        .floating-card:nth-child(4) { top: 70%; left: 20%; animation-delay: 6s; }
+
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotateY(180deg); opacity: 0.7; }
+        }
+
+        @keyframes text-glow {
+            0% { filter: drop-shadow(0 0 2px var(--color-cyan-holographic)); }
+            50% { filter: drop-shadow(0 0 6px var(--color-magenta-vibrant)); }
+            100% { filter: drop-shadow(0 0 2px var(--color-cyan-holographic)); }
+        }
+
+        /* ------------------- */
+        /* ---   Company Vision Section   --- */
+        /* ------------------- */
+        .vision-section {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(255, 0, 255, 0.05));
+            position: relative;
+        }
+
+        .vision-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-text {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 1.8;
+            color: var(--color-white);
+            margin-bottom: 60px;
+        }
+
+        .vision-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .vision-element {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .vision-element:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .vision-element h3 {
+            font-family: var(--font-title);
+            color: var(--color-cyan-holographic);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* ------------------- */
+        /* ---   Technology Section Enhanced   --- */
+        /* ------------------- */
+        .tech-section {
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1), transparent);
+        }
+
+        .tech-circles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 80px 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            border: 2px solid var(--color-cyan-holographic);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--color-cyan-holographic), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .tech-circle:hover::before {
+            opacity: 0.3;
+        }
+
+        .tech-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px var(--color-cyan-holographic);
+        }
+
+        .tech-circle-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-circle h3 {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            color: var(--color-white);
+            margin-bottom: 15px;
+        }
+
+        .tech-circle p {
+            font-size: 0.9rem;
+            color: var(--color-grey);
+            line-height: 1.5;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ------------------- */
+        /* ---   Licensing Section   --- */
+        /* ------------------- */
+        .licensing-section {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(255, 0, 255, 0.05));
+            position: relative;
+        }
+
+        /* ------------------- */
+        /* ---   Patents Section   --- */
+        /* ------------------- */
+        .patents-section {
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1), transparent);
+            position: relative;
+        }
+
+        /* ------------------- */
+        /* ---   Market Opportunity Section   --- */
+        /* ------------------- */
+        .market-section {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.05), rgba(0, 255, 255, 0.05));
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .market-stat {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .market-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .market-stat-number {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--color-gold-anunnaki);
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--color-gold-anunnaki);
+        }
+
+        .market-stat-label {
+            font-size: 1rem;
+            color: var(--color-white);
+            line-height: 1.4;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* ------------------- */
+        /* ---   Why Now Section   --- */
+        /* ------------------- */
+        .why-now-section {
+            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1), transparent);
+        }
+
+        .why-now-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .why-now-point {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .why-now-point:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
+        }
+
+        .why-now-point h3 {
+            font-family: var(--font-title);
+            color: var(--color-magenta-vibrant);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .why-now-point p {
+            color: var(--color-grey);
+            line-height: 1.6;
+        }
+
+        /* ------------------- */
+        /* ---   Flagship Section   --- */
+        /* ------------------- */
+        .flagship-section {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.05), rgba(0, 255, 255, 0.05));
+            position: relative;
+        }
+
+        .flagship-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flagship-intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .flagship-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--color-cyan-holographic);
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--color-cyan-holographic);
+        }
+
+        .flagship-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--color-grey);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .arena-cta {
+            margin-top: 40px;
+        }
+
+        .feature-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .feature-split__media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .holographic-card {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+            border-radius: 20px;
+            border: 2px solid var(--color-cyan-holographic);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .holographic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--color-cyan-holographic), transparent);
+            animation: rotate 6s linear infinite;
+            opacity: 0.3;
+        }
+
+        .holographic-card img {
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .holographic-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 255, 255, 0.5);
+        }
+
+        .feature-split__text {
+            padding: 40px;
+        }
+
+        .product-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-logo img {
+            max-width: 200px;
+            height: auto;
+            filter: drop-shadow(0 0 10px var(--color-cyan-holographic));
+        }
+
+        /* ------------------- */
+        /* ---   Leadership Section   --- */
+        /* ------------------- */
+        .leadership-section {
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05), transparent);
+        }
+
+        .leadership-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leadership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 4s infinite;
+        }
+
+        .leader-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .leader-name {
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--color-gold-anunnaki);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--color-gold-anunnaki);
+        }
+
+        .leader-title {
+            font-size: 1.2rem;
+            color: var(--color-cyan-holographic);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .leader-description {
+            font-size: 1.1rem;
+            color: var(--color-grey);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .leader-achievements {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            padding: 10px 20px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--color-cyan-holographic);
+            border-radius: 25px;
+            color: var(--color-cyan-holographic);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* ------------------- */
+        /* ---   Partnerships Section   --- */
+        /* ------------------- */
+        .partnerships-section {
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.05), rgba(255, 0, 255, 0.05));
+        }
+
+        .partnership-network {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .partnership-node {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .partnership-node:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .partnership-node h3 {
+            font-family: var(--font-title);
+            color: var(--color-cyan-holographic);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .partnership-node p {
+            color: var(--color-grey);
+            line-height: 1.6;
+        }
+
+        /* ------------------- */
+        /* ---   Contact Section   --- */
+        /* ------------------- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-cyan-holographic);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-cyan-holographic);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: var(--color-grey);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--color-cyan-holographic), var(--color-magenta-vibrant));
+            border: none;
+            border-radius: 8px;
+            color: var(--color-white);
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* ------------------- */
+        /* ---   Responsive Design   --- */
+        /* ------------------- */
+        @media (max-width: 768px) {
+            .navbar__menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .feature-split {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .feature-split h2, .feature-split p {
+                text-align: center;
+            }
+
+            .tech-circles {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-circle {
+                width: 250px;
+                height: 250px;
+            }
+
+            .leadership-card {
+                padding: 40px 20px;
+            }
+
+            .leader-achievements {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .market-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .why-now-points {
+                grid-template-columns: 1fr;
+            }
+
+            .partnership-network {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: var(--color-black-cosmic);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            color: var(--color-grey);
+            font-size: 0.9rem;
+        }
+
+        .footer__section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer__section h4 {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--color-white);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer__menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer__menu li {
+            margin-bottom: 10px;
+        }
+
+        .footer__menu a {
+            color: var(--color-grey);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .footer__menu a:hover {
+            color: var(--color-cyan-holographic);
+        }
+
+        .footer__search {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .footer__search input[type="text"] {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(20, 20, 20, 0.8);
+            color: var(--color-white);
+            border-radius: 5px 0 0 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer__search button {
+            padding: 10px 15px;
+            background: linear-gradient(45deg, var(--color-cyan-holographic), var(--color-magenta-vibrant));
+            border: none;
+            color: var(--color-white);
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: opacity var(--transition-speed);
+        }
+
+        .footer__search button:hover {
+            opacity: 0.8;
+        }
+
+        .footer__bottom-text {
+            width: 100%;
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer__section {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .footer__search {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="background-stars"></div>
+
+    <nav class="navbar">
+        <a href="#hero" class="navbar__logo">
+            <img src="https://i.postimg.cc/K8yfWf8g/LOGO-HORIZONTAL-PHUNKYGAMES-PNG.png" alt="Phunky Games Logo">
+            <span>Phunky Games</span>
+        </a>
+        <ul class="navbar__menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#licensing">Licensing</a></li>
+            <li><a href="#patents">Patents</a></li>
+            <li><a href="#market">Market</a></li>
+            <li><a href="#flagship">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+        </div>
+    </nav>
+
+    <section id="hero" class="section">
+        <div class="floating-cards">
+            <div class="floating-card"></div>
+            <div class="floating-card"></div>
+            <div class="floating-card"></div>
+            <div class="floating-card"></div>
+        </div>
+        <h1>Unlocking the Next Frontier in Gaming</h1>
+        <p class="subline">Phygital Storytelling</p>
+        <p class="hero-description">We are pioneering a new category where physical gameplay meets digital storytelling, enabling players to transform every match into a cinematic, shareable experience.</p>
+        <a href="#flagship" class="cta-button reveal-on-scroll">Discover Machiatto</a>
+    </section>
+
+    <section id="vision" class="section vision-section">
+        <h2 class="section-title reveal-on-scroll">The Origin of a Playable Revolution</h2>
+        <div class="vision-content">
+            <p class="vision-text reveal-on-scroll">Why do we remember epic matches that never quite happened? Because games aren't just played — they're felt. At Phunky Games, we transform emotion into cinematic narrative. Our mission began with that mysterious memory gap: capturing what players felt, and turning it into something eternal.</p>
+            <div class="vision-elements">
+                <div class="vision-element reveal-on-scroll">
+                    <h3>Gaming Evolution</h3>
+                    <p>Pioneering the convergence of physical and digital realms through innovative technology and storytelling.</p>
+                </div>
+                <div class="vision-element reveal-on-scroll">
+                    <h3>Community Building</h3>
+                    <p>Creating platforms that foster meaningful connections and shared experiences across gaming communities.</p>
+                </div>
+                <div class="vision-element reveal-on-scroll">
+                    <h3>Future Infrastructure</h3>
+                    <p>Developing scalable systems that will power the next generation of hybrid gaming experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technology" class="section tech-section">
+        <h2 class="section-title reveal-on-scroll">Next-Gen Phygital Technology</h2>
+        <p class="section-subtitle reveal-on-scroll">Our patented engine uses advanced visual markers embedded in physical cards. These unlock hidden experiences, expand game lore, and turn every match into a living story.</p>
+        
+        <div class="tech-circles">
+            <div class="tech-circle reveal-on-scroll">
+                <div class="tech-circle-content">
+                    <h3>Dynamic Narrative Engine</h3>
+                    <p>Captures physical gameplay and structures it into narrative arcs, generating AI-based cinematic content automatically.</p>
+                </div>
+            </div>
+            <div class="tech-circle reveal-on-scroll">
+                <div class="tech-circle-content">
+                    <h3>Hybrid Gaming System</h3>
+                    <p>Enables real-time hybrid tournaments with avatar overlays and AI referees providing dynamic commentary.</p>
+                </div>
+            </div>
+            <div class="tech-circle reveal-on-scroll">
+                <div class="tech-circle-content">
+                    <h3>Phygital Companion Ecosystem</h3>
+                    <p>Integrates gameplay capture, social sharing, tournaments, and ethical blockchain components into a cohesive experience.</p>
+                </div>
+            </div>
+        </div>
+        <p class="section-subtitle reveal-on-scroll" style="margin-top: 60px; font-style: italic; color: var(--color-gold-anunnaki);">Note: Technical implementation details remain confidential to protect our strategic advantage.</p>
+    </section>
+
+    <!-- Licensing Section -->
+    <section id="licensing" class="section licensing-section">
+        <h2 class="section-title reveal-on-scroll">Licensing the Future of Physical Games</h2>
+        <p class="section-subtitle reveal-on-scroll">Phunky Games isn't just building games — we're offering studios a way to phygitalize their existing IPs. Our ecosystem can be integrated into legacy titles, bringing them into the digital age without compromising their core identity.</p>
+        <div class="vision-elements">
+            <div class="vision-element reveal-on-scroll">
+                <h3>IP Integration</h3>
+                <p>Transform existing intellectual properties with our phygital technology, breathing new life into beloved franchises while preserving their authentic essence.</p>
+            </div>
+            <div class="vision-element reveal-on-scroll">
+                <h3>Reimagining Legendary Classics</h3>
+                <p>Imagine classics like Netrunner, Call of Cthulhu, or Raw Deal brought back to life with AI-driven narration, real-time cinematics, and hidden lore layers.</p>
+            </div>
+            <div class="vision-element reveal-on-scroll">
+                <h3>Legacy Modernization</h3>
+                <p>Bring classic games into the digital age without losing their core identity, creating new revenue streams for established properties.</p>
+            </div>
+        </div>
+        <p class="section-subtitle reveal-on-scroll" style="margin-top: 40px; font-style: italic; color: var(--color-gold-anunnaki);">This is a conceptual vision only; execution is subject to licensing and IP-holder agreements.</p>
+    </section>
+
+    <!-- Patents Section -->
+    <section id="patents" class="section patents-section">
+        <h2 class="section-title reveal-on-scroll">A Patent-Protected Technological Fortress</h2>
+        <p class="section-subtitle reveal-on-scroll">Over 16 patents safeguard our innovations in phygital narrative, visual security, and hybrid synchronization. Managed by Punky Tiger Labs, this IP portfolio ensures our technology is unique, secure, and scalable.</p>
+        <div class="vision-elements">
+            <div class="vision-element reveal-on-scroll">
+                <h3>16+ Active Patents</h3>
+                <p>Comprehensive protection across phygital gaming innovations, ensuring our technological leadership and competitive advantage.</p>
+            </div>
+            <div class="vision-element reveal-on-scroll">
+                <h3>Visual Security</h3>
+                <p>Advanced visual marker recognition and security protocols that protect against counterfeiting and unauthorized access.</p>
+            </div>
+            <div class="vision-element reveal-on-scroll">
+                <h3>Narrative Engine</h3>
+                <p>AI-powered real-time storytelling and cinematic generation systems that create unique experiences for every match.</p>
+            </div>
+            <div class="vision-element reveal-on-scroll">
+                <h3>Hybrid Synchronization</h3>
+                <p>Seamless physical-digital synchronization technology that bridges the gap between real and virtual gameplay.</p>
+            </div>
+        </div>
+        <p class="section-subtitle reveal-on-scroll" style="margin-top: 40px; font-style: italic; color: var(--color-gold-anunnaki);">Patent numbers and technical claims are shared only under NDA.</p>
+    </section>
+
+    <section id="market" class="section market-section">
+        <h2 class="section-title reveal-on-scroll">A Massive Untapped Market</h2>
+        <p class="section-subtitle reveal-on-scroll">The convergence of physical and digital gaming represents an unprecedented opportunity in the rapidly expanding gaming ecosystem.</p>
+        
+        <div class="market-stats">
+            <div class="market-stat reveal-on-scroll">
+                <div class="market-stat-number">$6.6B</div>
+                <div class="market-stat-label">Global TCG market growing at 7.8% CAGR</div>
+            </div>
+            <div class="market-stat reveal-on-scroll">
+                <div class="market-stat-number">&lt;5%</div>
+                <div class="market-stat-label">Of 50M global TCG players use companion apps</div>
+            </div>
+            <div class="market-stat reveal-on-scroll">
+                <div class="market-stat-number">$52.5B</div>
+                <div class="market-stat-label">Phygital gaming market growth by 2030</div>
+            </div>
+            <div class="market-stat reveal-on-scroll">
+                <div class="market-stat-number">62%</div>
+                <div class="market-stat-label">Of core gamers seek avatar-based personalization</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-now" class="section why-now-section">
+        <h2 class="section-title reveal-on-scroll">The Perfect Storm of Technology and Behavior</h2>
+        <p class="section-subtitle reveal-on-scroll">Multiple converging trends create an unprecedented opportunity for phygital gaming innovation.</p>
+        
+        <div class="why-now-points">
+            <div class="why-now-point reveal-on-scroll">
+                <h3>86% Smartphone Penetration</h3>
+                <p>Ubiquitous access enables seamless integration between physical and digital gaming experiences.</p>
+            </div>
+            <div class="why-now-point reveal-on-scroll">
+                <h3>Post-COVID Shift</h3>
+                <p>Accelerated demand for augmented physical experiences that bridge digital and real-world interactions.</p>
+            </div>
+            <div class="why-now-point reveal-on-scroll">
+                <h3>Mature AI Infrastructure</h3>
+                <p>Advanced AI and blockchain technologies now enable sophisticated narrative generation and community features.</p>
+            </div>
+            <div class="why-now-point reveal-on-scroll">
+                <h3>Proven Market Demand</h3>
+                <p>While games like Pokémon GO showed appetite for real-world interaction, Phunky Games goes further: merging physical cards with digital storytelling into a unified hybrid experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="flagship" class="section flagship-section">
+        <div class="flagship-content">
+            <div class="flagship-intro">
+                <h2 class="section-title reveal-on-scroll">Introducing Machiatto Arena</h2>
+                <p class="flagship-subtitle reveal-on-scroll">The World's First Phygital Storytelling Companion</p>
+                <p class="flagship-description reveal-on-scroll">Machiatto Arena App transforms every physical TCG match into a living, shareable digital narrative. Players scan their matches, generate AI-crafted cinematic trailers, and build communities around their stories.</p>
+                <div class="arena-cta">
+                    <a href="#contact" class="cta-button reveal-on-scroll">Enter the Arena</a>
+                </div>
+            </div>
+
+            <div class="feature-split" style="margin-top: 100px;">
+                <div class="feature-split__media reveal-on-scroll">
+                    <div class="holographic-card">
+                        <img src="https://i.postimg.cc/LXD7dKFJ/Machiatto-Icono-blanco.png" alt="Machiatto Icon">
+                    </div>
+                </div>
+                <div class="feature-split__text reveal-on-scroll">
+                    <h2 class="section-title">Revolutionary Features</h2>
+                    <div class="product-logo">
+                        <img src="https://i.postimg.cc/WzbkJ9jx/Machiatto-HORIZONTAL-COMPUESTO.png" alt="Machiatto Arena Logo" style="max-width: 300px; margin-bottom: 20px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="section leadership-section">
+        <h2 class="section-title reveal-on-scroll">Visionary Leadership</h2>
+        <div class="leadership-card reveal-on-scroll">
+            <div class="leader-content">
+                <h3 class="leader-name">Álvaro Mauricio López Zúñiga</h3>
+                <p class="leader-title">CEO & Founder</p>
+                <p class="leader-description">Serial entrepreneur and gaming visionary leading the phygital revolution with 3 proprietary patents and a clear path to market leadership.</p>
+                <div class="leader-achievements">
+                    <div class="achievement">3 Patents</div>
+                    <div class="achievement">Gaming Visionary</div>
+                    <div class="achievement">Serial Entrepreneur</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partnerships" class="section partnerships-section">
+        <h2 class="section-title reveal-on-scroll">Building the Ecosystem</h2>
+        <p class="section-subtitle reveal-on-scroll">Strategic partnerships across the gaming industry to create a comprehensive phygital gaming ecosystem.</p>
+        
+        <div class="partnership-network">
+            <div class="partnership-node reveal-on-scroll">
+                <h3>TCG Distributors</h3>
+                <p>Global distribution networks for physical card games and merchandise</p>
+            </div>
+            <div class="partnership-node reveal-on-scroll">
+                <h3>Technology Developers</h3>
+                <p>AI, blockchain, and mobile development partners</p>
+            </div>
+            <div class="partnership-node reveal-on-scroll">
+                <h3>Blockchain Platforms</h3>
+                <p>Ethical NFT and token ecosystem integration</p>
+            </div>
+            <div class="partnership-node reveal-on-scroll">
+                <h3>Gaming Communities</h3>
+                <p>Established player bases and tournament organizers</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title reveal-on-scroll">Join the Phygital Revolution</h2>
+        <p class="section-subtitle reveal-on-scroll">Ready to unlock the future of gaming? Connect with us to explore partnerships, technology licensing, or investment opportunities.</p>
+        <form class="contact-form reveal-on-scroll">
+            <div class="form-group">
+                <label for="inquiry-type">Inquiry Type</label>
+                <select id="inquiry-type" name="inquiry-type" class="form-control" required>
+                    <option value="">Select inquiry type</option>
+                    <option value="partnership">Partnership Inquiries</option>
+                    <option value="licensing">Technology Licensing</option>
+                    <option value="media">Media Requests</option>
+                    <option value="investment">Investment Opportunities</option>
+                    <option value="general">General Contact</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="company">Company/Organization</label>
+                <input type="text" id="company" name="company" class="form-control" placeholder="Your Company">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Tell us about your interest in Phunky Games..." required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__section">
+            <h4>Phunky Games</h4>
+            <ul class="footer__menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#market">Market</a></li>
+            </ul>
+        </div>
+        <div class="footer__section">
+            <h4>Products</h4>
+            <ul class="footer__menu">
+                <li><a href="#flagship">Machiatto Arena</a></li>
+                <li><a href="#technology">Phygital Engine</a></li>
+                <li><a href="#partnerships">Partnerships</a></li>
+            </ul>
+        </div>
+        <div class="footer__section">
+            <h4>Company</h4>
+            <ul class="footer__menu">
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#partnerships">Partners</a></li>
+            </ul>
+        </div>
+        <div class="footer__section">
+            <h4>Stay Updated</h4>
+            <p>Subscribe to our newsletter for the latest updates on phygital gaming innovation.</p>
+            <div class="footer__search">
+                <input type="text" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+        <div class="footer__bottom-text">
+            <p>&copy; 2024 Phunky Games. All rights reserved. Pioneering the future of phygital gaming.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animated background stars
+        function createStars() {
+            const starsContainer = document.getElementById('background-stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation duration
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal-on-scroll');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('is-visible');
+                }
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.navbar__menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function smoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize all functions
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            toggleMobileMenu();
+            smoothScrolling();
+            revealOnScroll();
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
